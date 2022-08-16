@@ -1,14 +1,18 @@
 const jwt = require('jsonwebtoken')
 
 const login = (req, res) => {
-    res.send("loggedin")
+    console.log("Login request red")
+    res.send("logged in")
 }
 
 const register = (req, res) => {
-    const user = req.body
+    const { email, password, firstname, lastname } = req.body
     
-    const email = user.email
-    const password = user.password
+    console.log({ email, password })
+
+    if(!(email && password && firstname && lastname)) {
+        return res.status(400).send()
+    }
 
     const token = jwt.sign(email, process.env.TOKEN_SECRET)
     console.log(token)

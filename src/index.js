@@ -6,7 +6,7 @@ const bodyParser = require("body-parser")
 const dotenv = require('dotenv');
 const app = express()
 
-const routes = require("./routes")
+const authRoutes = require("./routes/auth.router")
 
 // get config vars
 dotenv.config();
@@ -15,7 +15,7 @@ dotenv.config();
 app.use(bodyParser.json())
 
 // Routes
-app.use(`${BASE_URL}/`, routes.auth)
+app.use(`${BASE_URL}/`, authRoutes)
 
 // Run Server
 app.listen(PORT, () => {
