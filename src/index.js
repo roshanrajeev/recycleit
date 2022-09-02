@@ -7,9 +7,13 @@ const dotenv = require('dotenv');
 const app = express()
 
 const authRoutes = require("./routes/auth.router")
+const { db } = require("./config/db.config")
 
 // get config vars
 dotenv.config();
+
+// Database
+db()
 
 // Middlewares
 app.use(bodyParser.json())

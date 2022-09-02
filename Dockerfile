@@ -8,8 +8,8 @@ COPY package*.json .
 
 RUN npm install
 
-COPY . /code
+COPY . /code/
 
 # EXPOSE 5000
 
-# CMD [ "npm", "run", "develop"]
+CMD [ "npm", "develop"]
