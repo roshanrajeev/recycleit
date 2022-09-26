@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recycleit_client/constants/app_colors.dart';
 import 'package:recycleit_client/models/item_data.dart';
 import 'package:recycleit_client/models/user_data.dart';
+import 'package:recycleit_client/presentation/widgets/feed_post.dart';
 import 'package:recycleit_client/presentation/widgets/trending_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -49,42 +50,60 @@ class HomePage extends StatelessWidget {
             ),
           ),
           // Container(height: 40),
-          SliverPadding(
-            padding: EdgeInsets.all(10),
-            sliver: SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  Text('Top Trending Posts'),
-                  SizedBox(
-                      height: (MediaQuery.of(context).size.width) / 1.5,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          TrendingCard(
-                              item: Item(
-                                  user: UserData(name: "Athul John"),
-                                  images: ["assets/images/trending1.jpg"])),
-                          TrendingCard(
-                              item: Item(
-                                  user: UserData(name: "Athul John"),
-                                  images: ["assets/images/trending1.jpg"])),
-                          TrendingCard(
-                              item: Item(
-                                  user: UserData(name: "Athul John"),
-                                  images: ["assets/images/trending1.jpg"]))
-                        ],
-                      )),
-                  Text('Your Feed'),
-                  // SliverList(
-                  //     delegate: SliverChildBuilderDelegate((context, ind) =>
-                  //         TrendingCard(
-                  //             item: Item(
-                  //                 user: UserData(name: "Athul John"),
-                  //                 images: ["assets/images/trending1.jpg"]))))
-                ],
-              ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5.0),
+                  child: Text(
+                    'Top Trending Posts',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+                SizedBox(
+                    height: (MediaQuery.of(context).size.width) / 1.5,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        SizedBox(
+                          width: 10,
+                        ),
+                        TrendingCard(
+                            item: Item(
+                                user: UserData(name: "Athul John"),
+                                images: ["assets/images/trending1.jpg"])),
+                        TrendingCard(
+                            item: Item(
+                                user: UserData(name: "Athul John"),
+                                images: ["assets/images/trending2.jpg"])),
+                        TrendingCard(
+                            item: Item(
+                                user: UserData(name: "Athul John"),
+                                images: ["assets/images/trending3.jpg"]))
+                      ],
+                    )),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5.0),
+                  child: Text(
+                    'Your Feed',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+              ],
             ),
           ),
+
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            sliver: SliverList(
+                delegate: SliverChildBuilderDelegate((context, index) =>
+                    FeedPost(
+                        item: Item(
+                            user: UserData(name: "Athul John"),
+                            description:
+                                'All these years, I was searching for you...',
+                            images: ["assets/images/trending2.jpg"])))),
+          )
         ],
       ),
     );

@@ -9,22 +9,29 @@ class UserPicName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: user.image == null
-              ? CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/trending2.jpg'))
-              : CircleAvatar(backgroundImage: NetworkImage(user.image!)),
-        ),
-        Expanded(
-          flex: 3,
-          child: Text(
-            user.name,
-            style: TextStyle(color: color),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Row(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            child: SizedBox(
+              height: 30,
+              child: user.image == null
+                  ? CircleAvatar(
+                      backgroundImage:
+                          AssetImage('assets/images/trending2.jpg'))
+                  : CircleAvatar(backgroundImage: NetworkImage(user.image!)),
+            ),
           ),
-        )
-      ],
+          Expanded(
+            child: Text(
+              user.name,
+              style: TextStyle(color: color, fontWeight: FontWeight.w600),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
